@@ -14,10 +14,13 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   useEffect(()=>{
-    
+    const axiosInstance = axios.create({
+      timeout: 50000, // 50 seconds timeout
+    });
+        
       if(stockList&&stockList.length===0){
         setLoading(true)
-        axios.get(LIST_STOCKS)?.then(res => {
+        axiosInstance.get(LIST_STOCKS)?.then(res => {
           // console.log('STOCKLISTCALLED',res)
           setStockList(res.data)
           setLoading(false)
@@ -26,12 +29,12 @@ function App() {
         const interval = setInterval(() => {
           setLoading(true)
 
-          axios.get(LIST_STOCKS)?.then(res => {
+          axiosInstance.get(LIST_STOCKS)?.then(res => {
               // console.log('STOCKLISTCALLED',res)
               setStockList(res.data)
               setLoading(false)
           })    
-      }, stockList&&stockList.length===0 ? 0 : 30000);
+      }, stockList&&stockList.length===0 ? 0 : 60000);
       return()=>{
           clearInterval(interval)
       }

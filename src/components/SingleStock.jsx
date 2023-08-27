@@ -16,7 +16,7 @@ export default function SingleStock(props) {
     setInterval(() => {
       setCurrStock(stockList.find(el => el.id===props.selectedStock.id))
       setDataArr(stockList.find(el => el.id===props.selectedStock.id).priceRec)
-    }, 20000);
+    }, 50000);
     return()=>{
       clearInterval()
     }
@@ -49,7 +49,7 @@ export default function SingleStock(props) {
                   <Tooltip />
                   <Legend />
                   <ReferenceLine y={0} stroke="white" />
-                  <Line type="monotone" dataKey="priceDiff" stroke="#8884d8" activeDot={{ r: 8 }} />
+                  <Line type="monotone" dataKey="priceDiff" stroke="#8884d8" strokeWidth={5} activeDot={{ r: 8 }} />
                 </LineChart>
             </ResponsiveContainer>
         </div>
